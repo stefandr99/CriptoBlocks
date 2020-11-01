@@ -1,4 +1,4 @@
-package com.encryption;
+package com.si.encryption;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -10,13 +10,9 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-
 public class AES {
-    private static final KeyGenerator generatedKey = new KeyGenerator();
+    public static final KeyGenerator generatedKey = new KeyGenerator();
     StringBuilder decryptedText = new StringBuilder();
-    String iv = generateString();
-    String key1 = "nSVB42NVkfzc2";
-    String auxIV = iv;
 
     public static String encrypt(String text, String key) throws NoSuchPaddingException, NoSuchAlgorithmException,
             UnsupportedEncodingException, BadPaddingException,
@@ -36,6 +32,7 @@ public class AES {
         cipher.init(Cipher.DECRYPT_MODE, generatedKey.getSecretKey());
         return new String(cipher.doFinal(Base64.getDecoder().decode(ciphertext)));
     }
+
 
 
 }

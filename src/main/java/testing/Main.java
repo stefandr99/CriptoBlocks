@@ -1,6 +1,6 @@
 package testing;
 
-import com.encryption.AES;
+import com.si.encryption.AES;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -10,35 +10,18 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] argv) throws NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidKeyException {
         List<String> encryptedList = new ArrayList<>();
 
         StringBuilder decryptedText = new StringBuilder();
-        //String iv = generateString();
-        String key1 = "nSVB42NVkfzc2";
-        String auxIV = iv;
+        String ivv = generateString();
+        String key1 = "nSVB42NVkfzc2Vx0";
+        String auxIV = ivv;
+        String text = "Acesta este doar un text exemplu. Tema se face pentru materia securitatea informatiei.";
 
-        Scanner in = new Scanner(System.in);
-        String text = in.nextLine();
-
-
-        /**
-         * EBC
-         */
-        /*for(int i = 0; i < text.length(); i += 16) {
-            if(i + 16 > text.length())
-                encryptedList.add(AES.encrypt(text.substring(i), key1));
-            else
-                encryptedList.add(AES.encrypt(text.substring(i, i + 16), key1));
-        }
-
-        for(String s : encryptedList) {
-            decryptedText.append(AES.decrypt(s, key1));
-        }
-        */
 
         for(int i = 0; i < text.length(); i += 16) {
             auxIV = AES.encrypt(auxIV, key1);
@@ -57,7 +40,7 @@ public class Main {
             encryptedList.add(sb.toString());
         }
 
-        auxIV = iv;
+        auxIV = ivv;
         for(String s : encryptedList) {
             auxIV = AES.encrypt(auxIV, key1);
             StringBuilder sb = new StringBuilder();
@@ -73,7 +56,7 @@ public class Main {
 
     }
 
-    /*public static String generateString() {
+    public static String generateString() {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -84,5 +67,5 @@ public class Main {
             sb.append(randomChar);
         }
         return sb.toString();
-    }*/
+    }
 }

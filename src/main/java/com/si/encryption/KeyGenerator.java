@@ -1,11 +1,11 @@
-package com.encryption;
+package com.si.encryption;
 
 import javax.crypto.spec.SecretKeySpec;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.Random;
 
 public class KeyGenerator {
     private SecretKeySpec secretKey;
@@ -29,4 +29,5 @@ public class KeyGenerator {
     public SecretKeySpec getSecretKey() {
         return this.secretKey;
     }
+
 }
